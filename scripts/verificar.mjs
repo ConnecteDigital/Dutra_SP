@@ -5,7 +5,7 @@ import path from 'node:path';
 
 // Dados deste site e do site "irmão" (que NÃO pode aparecer aqui)
 const GTM = 'GTM-P8M6GGLD';
-const FONE = '5511927483973';
+const FONE = '5511927483974';
 const GTM_OUTRO = 'GTM-NKTZBFPR';
 const FONE_OUTRO = '5519991709018';
 

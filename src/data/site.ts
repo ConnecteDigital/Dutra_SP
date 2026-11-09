@@ -2,7 +2,7 @@
 // O domínio fica em astro.config.mjs (constante DOMINIO).
 
 // Formato: 55 + DDD + número, só dígitos
-const PHONE_DIGITS = '5511927483973';
+const PHONE_DIGITS = '5511927483974';
 
 export const site = {
   name: 'Hidro Dutra SP',

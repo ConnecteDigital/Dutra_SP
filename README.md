@@ -35,7 +35,7 @@ npm run verificar  # confere GTM, WhatsApp e telefone em todas as páginas gerad
 ## Regras de rastreamento (não quebrar)
 
 - Só o Google Tag Manager `GTM-P8M6GGLD`, uma vez no `<head>` e uma no `<noscript>`. Nada de `gtag/js`, `AW-` ou `GT-` no código.
-- Botões de WhatsApp são sempre `<a href="https://api.whatsapp.com/send?phone=5511927483973&text=...">`. Sem `wa.me`, `onclick` ou `window.open`.
-- Telefone sempre `tel:+5511927483973`.
+- Botões de WhatsApp são sempre `<a href="https://api.whatsapp.com/send?phone=5511927483974&text=...">`. Sem `wa.me`, `onclick` ou `window.open`.
+- Telefone sempre `tel:+5511927483974`.
 - Não remover nem reescrever parâmetros da URL de entrada (`gclid`, `gbraid`, `wbraid` etc.).
 - `npm run verificar` confere tudo isso e falha se algo estiver fora do padrão.
