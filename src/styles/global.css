@@ -408,7 +408,7 @@ body:has(.nav-mobile[open]) .float-cta { display: none; }
   }
 }
 
-/* ===== Desentupidora Dutra SP ===== */
+/* ===== Hidro Dutra SP ===== */
 :root { --logo-bg: var(--blue-500); --logo-drop: #fff; }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: #fff; }
 .logo-mark { flex: none; }

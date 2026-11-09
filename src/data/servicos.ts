@@ -32,7 +32,7 @@ export const servicos: Servico[] = [
     categoria: 'Desentupimento',
     intro: [
       'Pia de cozinha entupida quase sempre é gordura. Ela desce líquida junto com a água quente, esfria dentro do cano e vai grudando na parede da tubulação até fechar a passagem. No lavatório do banheiro o vilão costuma ser cabelo misturado com sabonete e creme dental.',
-      'A Desentupidora Dutra SP atende casas, apartamentos, restaurantes e comércios em toda a capital. Trabalhamos com máquina de cabo flexível, que entra pelo próprio ralo ou pelo sifão e limpa o cano por dentro, até a água voltar a escoar normalmente.',
+      'A Hidro Dutra SP atende casas, apartamentos, restaurantes e comércios em toda a capital. Trabalhamos com máquina de cabo flexível, que entra pelo próprio ralo ou pelo sifão e limpa o cano por dentro, até a água voltar a escoar normalmente.',
     ],
     sinais: [
       'Água demorando para descer ou parada na cuba',
@@ -155,7 +155,7 @@ export const servicos: Servico[] = [
     categoria: 'Desentupimento',
     intro: [
       'Quando mais de um ponto da casa começa a escoar mal ao mesmo tempo, o problema já não está no ralo ou na pia: está no cano que recebe todos eles. Gordura endurecida, raiz de árvore, entulho de obra e cano com caimento errado são as causas mais comuns.',
-      'A Desentupidora Dutra SP desobstrui tubulações de 40 mm a grandes diâmetros em casas, prédios, comércios e indústrias de São Paulo. Usamos máquinas rotativas com cabos e ponteiras para cada situação e, em redes longas ou muito sujas, hidrojateamento.',
+      'A Hidro Dutra SP desobstrui tubulações de 40 mm a grandes diâmetros em casas, prédios, comércios e indústrias de São Paulo. Usamos máquinas rotativas com cabos e ponteiras para cada situação e, em redes longas ou muito sujas, hidrojateamento.',
     ],
     sinais: [
       'Vários ralos e pias lentos ao mesmo tempo',
@@ -360,7 +360,7 @@ export const servicos: Servico[] = [
     categoria: 'Limpa fossa e limpeza',
     intro: [
       'A fossa recebe todo o esgoto do imóvel e, com o tempo, o lodo se acumula no fundo até não caber mais nada. Quando isso acontece, o esgoto começa a voltar para dentro de casa ou a minar no terreno. A solução é o esgotamento com caminhão limpa fossa.',
-      'A Desentupidora Dutra SP faz a limpeza de fossa séptica, fossa negra, sumidouro e poços de recalque em casas, chácaras, condomínios, comércios e indústrias de São Paulo. O caminhão a vácuo suga todo o conteúdo por mangote, sem contato com o resíduo e sem sujeira no local.',
+      'A Hidro Dutra SP faz a limpeza de fossa séptica, fossa negra, sumidouro e poços de recalque em casas, chácaras, condomínios, comércios e indústrias de São Paulo. O caminhão a vácuo suga todo o conteúdo por mangote, sem contato com o resíduo e sem sujeira no local.',
     ],
     sinais: [
       'Mau cheiro forte perto da fossa ou nos ralos',

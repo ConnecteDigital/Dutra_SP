@@ -40,7 +40,7 @@ const msg = `Olá! Vim pelo site e preciso de ${servico.nome.toLowerCase()}.`;
 ---
 
 <Base
-  title={`${servico.keyword} 24h | Dutra SP`}
+  title={`${servico.keyword} 24h | Hidro Dutra SP`}
   description={servico.metaDescription}
   schema={[serviceSchema(servico), faqSchema(faq), breadcrumbSchema(crumbs)]}
 >
@@ -123,7 +123,7 @@ const msg = `Olá! Vim pelo site e preciso de ${servico.nome.toLowerCase()}.`;
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Mais serviços</span>
-        <h2>Outros serviços da Dutra SP</h2>
+        <h2>Outros serviços da Hidro Dutra SP</h2>
       </div>
       <div class="services-grid">
         {outros.slice(0, 4).map((s) => <ServiceCard servico={s} />)}

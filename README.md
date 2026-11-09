@@ -1,6 +1,6 @@
-# Desentupidora Dutra SP · site
+# Hidro Dutra SP · site
 
-Site da Desentupidora Dutra SP (desentupidora e limpa fossa 24h em São Paulo, capital), com foco em SEO local
+Site da Hidro Dutra SP (desentupidora e limpa fossa 24h em São Paulo, capital), com foco em SEO local
 e tráfego de Google Ads. Feito com [Astro](https://astro.build): gera páginas estáticas e é publicado na Vercel.
 
 ## Rodar localmente
