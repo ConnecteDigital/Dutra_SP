@@ -1,16 +1,14 @@
 ---
-// Logotipo provisório em texto. Quando o logo oficial chegar, basta trocar este componente por uma imagem.
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 import { site } from '../data/site';
+
+interface Props {
+  // Altura em pixels na tela
+  size?: number;
+}
+
+const { size = 68 } = Astro.props;
 ---
 
-<span class="logo">
-  <svg class="logo-mark" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
-    <rect width="40" height="40" rx="11" fill="var(--logo-bg)" />
-    <path d="M20 7.5S11 17.6 11 23.8a9 9 0 0 0 18 0C29 17.6 20 7.5 20 7.5z" fill="var(--logo-drop)" />
-    <path d="M15.5 24.5a4.6 4.6 0 0 0 4.5 4" fill="none" stroke="var(--logo-bg)" stroke-width="2.2" stroke-linecap="round" />
-  </svg>
-  <span class="logo-text">
-    <small>Desentupidora</small>
-    <strong>{site.shortName}</strong>
-  </span>
-</span>
+<Image class="logo-img" src={logo} alt={site.name} height={size * 2} style={`height:${size}px;width:auto`} loading="eager" />

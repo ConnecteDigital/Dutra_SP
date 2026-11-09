@@ -448,3 +448,9 @@ a.submenu-zona { display: block; padding: 6px 12px; margin: 0; }
 
 .article.prose { font-size: 1.05rem; }
 .prose a { font-weight: 600; }
+
+/* logotipo */
+.logo-img { display: block; }
+.brand { display: block; padding: 2px 0; line-height: 0; }
+.footer-brand .logo-img { margin-bottom: 14px; }
+@media (max-width: 560px) { .site-header .logo-img { height: 54px !important; } }

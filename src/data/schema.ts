@@ -11,7 +11,7 @@ export function localBusinessSchema() {
     '@id': businessId,
     name: site.name,
     url: site.url,
-    logo: `${site.url}/favicon.svg`,
+    logo: `${site.url}/logo.png`,
     image: `${site.url}/og.jpg`,
     telephone: `+${site.phoneDigits}`,
     description: site.description,
