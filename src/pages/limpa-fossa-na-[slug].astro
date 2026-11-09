@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { zonas, bairros, bairroPath, zonaPath, fossaZonaPath, type Zona } from '../data/locais';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../data/schema';
+
+export function getStaticPaths() {
+  return zonas.map((zona) => ({ params: { slug: zona.slug }, props: { zona } }));
+}
+
+interface Props {
+  zona: Zona;
+}
+
+const { zona } = Astro.props;
+const daZona = zona.em.replace(/^n/, 'd');
+const lista = bairros.filter((b) => b.zona === zona.slug);
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Limpa fossa', path: '/servicos/limpa-fossa/' },
+  { name: zona.nome, path: fossaZonaPath(zona) },
+];
+const faq = [
+  {
+    q: `Vocês fazem limpa fossa ${zona.em} 24 horas?`,
+    a: `Sim. O caminhão limpa fossa atende os bairros ${daZona} de São Paulo 24 horas por dia, todos os dias.`,
+  },
+  {
+    q: 'De quanto em quanto tempo a fossa deve ser limpa?',
+    a: 'Em residências, a referência é uma vez por ano. Comércios e imóveis com muitas pessoas podem precisar de intervalos menores.',
+  },
+  {
+    q: 'Limpam caixa de gordura de restaurante e condomínio?',
+    a: `Sim. Fazemos a sucção e a lavagem de caixas de gordura de todos os tamanhos ${zona.em}.`,
+  },
+  {
+    q: `Em quanto tempo vocês chegam ${zona.em}?`,
+    a: `Chegamos em até ${site.arrivalMinutes} minutos nos bairros atendidos ${daZona}.`,
+  },
+];
+const msg = `Olá! Vim pelo site e preciso de limpa fossa ${zona.em}.`;
+const servico = {
+  nome: `Limpa fossa ${zona.em}`,
+  keyword: 'Limpa fossa',
+  metaDescription: `Limpa fossa 24 horas ${zona.em} de São Paulo.`,
+};
+---
+
+<Base
+  title={`Limpa Fossa ${zona.em} 24h | Chegamos em ${site.arrivalMinutes} min | Dutra SP`}
+  description={`Limpa fossa ${zona.em} de São Paulo: esgotamento de fossa séptica, limpeza de caixa de gordura e hidrojateamento, 24 horas. Chegamos em até ${site.arrivalMinutes} minutos.`}
+  schema={[serviceSchema(servico, `${zona.nome}, São Paulo - SP`), faqSchema(faq), breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow">{zona.nome} · São Paulo</span>
+      <h1>Limpa fossa {zona.em} 24 horas</h1>
+      <p class="hero-lead">
+        Esgotamento de fossa, limpeza de caixa de gordura e hidrojateamento {zona.em} de São Paulo, com caminhão a vácuo
+        e chegada em até {site.arrivalMinutes} minutos.
+      </p>
+      <CtaButtons message={msg} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-grid">
+      <article class="prose">
+        <h2>Caminhão limpa fossa {zona.em}</h2>
+        <p>{zona.fossa}</p>
+        <p>
+          O caminhão a vácuo suga todo o conteúdo da fossa ou da caixa por mangote, sem contato com o resíduo. Quando a
+          tubulação também está comprometida, o serviço é combinado com o
+          <a href="/servicos/hidrojateamento/">hidrojateamento</a>.
+        </p>
+
+        <h2>Serviços com caminhão {zona.em}</h2>
+        <ul>
+          <li><a href="/servicos/limpa-fossa/">Limpeza de fossa séptica, fossa negra e sumidouro</a></li>
+          <li><a href="/servicos/limpeza-de-caixa-de-gordura/">Limpeza de caixa de gordura</a> residencial, de condomínio e de restaurante</li>
+          <li><a href="/servicos/hidrojateamento/">Hidrojateamento</a> de tubulações e redes de esgoto</li>
+          <li><a href="/servicos/desentupimento-de-esgoto/">Desentupimento de esgoto</a> e de caixas de inspeção</li>
+        </ul>
+
+        <h2>Bairros atendidos {zona.em}</h2>
+        <div class="chips">
+          {lista.map((b) => <a href={bairroPath(b)}><Icon name="pin" size={16} /> {b.nome}</a>)}
+        </div>
+
+        <h2>Perguntas frequentes</h2>
+        <FaqList items={faq} />
+      </article>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h2>Limpa fossa {zona.em} agora</h2>
+          <p>Fale com a gente e receba atendimento em até {site.arrivalMinutes} minutos.</p>
+          <CtaButtons message={msg} size="md" />
+        </div>
+        <div class="side-list">
+          <h2>Limpa fossa em outras regiões</h2>
+          <ul>
+            {zonas.filter((z) => z.slug !== zona.slug).map((z) => <li><a href={fossaZonaPath(z)}>Limpa fossa {z.em}</a></li>)}
+            <li><a href={zonaPath(zona)}>Desentupidora {zona.em}</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand title={`Fossa cheia ${zona.em}?`} message={msg} />
+</Base>

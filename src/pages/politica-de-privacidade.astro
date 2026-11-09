@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site, whatsappUrl } from '../data/site';
+import { breadcrumbSchema } from '../data/schema';
+
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Política de privacidade', path: '/politica-de-privacidade/' },
+];
+---
+
+<Base
+  title={`Política de Privacidade | ${site.name}`}
+  description={`Como a ${site.name} trata os dados de quem visita este site e entra em contato pelo WhatsApp ou telefone.`}
+  schema={[breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container article">
+      <Breadcrumbs items={crumbs} />
+      <h1>Política de privacidade</h1>
+      <p class="hero-lead">Como tratamos os dados de quem visita este site.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container article prose">
+      <h2>Quem somos</h2>
+      <p>
+        Este site pertence à {site.name}, que presta serviços de desentupimento e limpa fossa. Esta política explica quais
+        dados são tratados quando você navega por aqui ou entra em contato com a gente.
+      </p>
+
+      <h2>Dados que você nos informa</h2>
+      <p>
+        Este site não tem formulário de cadastro. Quando você clica em um botão de WhatsApp ou de ligação, o contato
+        acontece diretamente pelo aplicativo do seu telefone. O nome, o número, o endereço do atendimento e as demais
+        informações que você nos passar na conversa são usados somente para atender o seu chamado.
+      </p>
+
+      <h2>Dados de navegação e prevenção de fraude</h2>
+      <p>
+        <strong>Dados de navegação e prevenção de fraude.</strong> Quando você acessa este site a partir de um anúncio,
+        registramos automaticamente dados técnicos da visita — endereço IP, tipo de dispositivo e navegador, data e hora,
+        página acessada e o identificador do clique no anúncio — com a finalidade de medir os resultados da publicidade e
+        prevenir cliques fraudulentos ou repetidos. Esse tratamento se baseia no legítimo interesse (art. 7º, IX, da LGPD).
+        Os dados ficam guardados por até 90 dias e não são vendidos nem usados para outra finalidade. Para dúvidas ou para
+        exercer seus direitos de titular, entre em contato pelo WhatsApp informado neste site.
+      </p>
+
+      <h2>Cookies e ferramentas de medição</h2>
+      <p>
+        Usamos o Google Tag Manager para carregar ferramentas de medição de audiência e de publicidade. Essas ferramentas
+        podem gravar cookies no seu navegador. Você pode bloquear ou apagar os cookies nas configurações do navegador, sem
+        prejuízo para o uso do site.
+      </p>
+
+      <h2>Seus direitos</h2>
+      <p>
+        A Lei Geral de Proteção de Dados (Lei nº 13.709/2018) garante a você o direito de confirmar se tratamos dados seus,
+        acessá-los, corrigi-los e pedir a exclusão. Para isso, fale com a gente pelo
+        <a href={whatsappUrl('Olá! Vim pelo site e quero falar sobre os meus dados pessoais.')} target="_blank" rel="noopener">WhatsApp</a>
+        ou pelo telefone <a href={site.tel}>{site.phoneDisplay}</a>.
+      </p>
+
+      <h2>Alterações nesta política</h2>
+      <p>Esta política pode ser atualizada. A versão em vigor é sempre a publicada nesta página.</p>
+    </div>
+  </section>
+</Base>

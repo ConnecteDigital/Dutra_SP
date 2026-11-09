@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { bairrosPorZona, bairroPath, zonaPath, fossaZonaPath } from '../data/locais';
+import { breadcrumbSchema } from '../data/schema';
+
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Áreas atendidas', path: '/areas-atendidas/' },
+];
+---
+
+<Base
+  title="Áreas Atendidas: Desentupidora 24h em São Paulo | Dutra SP"
+  description={`Desentupidora e limpa fossa 24 horas na Zona Sul, Zona Leste, Zona Norte, Zona Oeste e Centro de São Paulo. Chegamos em até ${site.arrivalMinutes} minutos.`}
+  schema={[breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow">Áreas atendidas</span>
+      <h1>Desentupidora em toda São Paulo</h1>
+      <p class="hero-lead">Atendemos 24 horas nas quatro zonas da capital e no Centro. Encontre a sua região.</p>
+      <CtaButtons />
+    </div>
+  </section>
+  <section class="section section-soft">
+    <div class="container zones">
+      {
+        bairrosPorZona().map((g) => (
+          <div class="zone">
+            <h2 style="font-size:1.6rem"><a href={zonaPath(g.zona)}>{g.zona.nome}</a></h2>
+            <ul>
+              {g.bairros.map((b) => (
+                <li>
+                  <a href={bairroPath(b)}>
+                    <Icon name="pin" size={16} /> Desentupidora em {b.nome}
+                  </a>
+                </li>
+              ))}
+              <li><a href={fossaZonaPath(g.zona)}><Icon name="truck" size={16} /> Limpa fossa {g.zona.em}</a></li>
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <CtaBand />
+</Base>

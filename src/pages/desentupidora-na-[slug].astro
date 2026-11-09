@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { servicos } from '../data/servicos';
+import { zonas, bairros, bairroPath, zonaPath, fossaZonaPath, type Zona } from '../data/locais';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../data/schema';
+
+export function getStaticPaths() {
+  return zonas.map((zona) => ({ params: { slug: zona.slug }, props: { zona } }));
+}
+
+interface Props {
+  zona: Zona;
+}
+
+const { zona } = Astro.props;
+const daZona = zona.em.replace(/^n/, 'd');
+const lista = bairros.filter((b) => b.zona === zona.slug);
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Áreas atendidas', path: '/areas-atendidas/' },
+  { name: zona.nome, path: zonaPath(zona) },
+];
+const faq = [
+  {
+    q: `Vocês atendem ${zona.em} 24 horas?`,
+    a: `Sim. Atendemos todos os bairros ${daZona} de São Paulo 24 horas por dia, inclusive fins de semana e feriados.`,
+  },
+  {
+    q: `Em quanto tempo a desentupidora chega ${zona.em}?`,
+    a: `Chegamos em até ${site.arrivalMinutes} minutos nos bairros atendidos ${daZona}.`,
+  },
+  {
+    q: `Quais bairros ${daZona} vocês atendem?`,
+    a: `Atendemos ${lista.map((b) => b.nome).join(', ')} e os bairros vizinhos.`,
+  },
+  {
+    q: `Fazem limpa fossa e hidrojateamento ${zona.em}?`,
+    a: `Sim. Além do desentupimento, fazemos limpa fossa, limpeza de caixa de gordura e hidrojateamento ${zona.em}.`,
+  },
+];
+const msg = `Olá! Vim pelo site e preciso de uma desentupidora ${zona.em}.`;
+const servico = {
+  nome: `Desentupidora ${zona.em}`,
+  keyword: 'Desentupidora',
+  metaDescription: `Desentupidora 24 horas ${zona.em} de São Paulo.`,
+};
+---
+
+<Base
+  title={`Desentupidora ${zona.em} 24h | Chegamos em ${site.arrivalMinutes} min | Dutra SP`}
+  description={`Desentupidora ${zona.em} de São Paulo: pia, ralo, vaso, cano e esgoto, hidrojateamento e limpa fossa 24 horas. Chegamos em até ${site.arrivalMinutes} minutos.`}
+  schema={[serviceSchema(servico, `${zona.nome}, São Paulo - SP`), faqSchema(faq), breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow">{zona.nome} · São Paulo</span>
+      <h1>Desentupidora {zona.em} 24 horas</h1>
+      <p class="hero-lead">
+        A {site.name} atende todos os bairros {daZona} de São Paulo, 24 horas por dia, com chegada em até {site.arrivalMinutes} minutos.
+      </p>
+      <CtaButtons message={msg} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-grid">
+      <article class="prose">
+        <h2>Desentupimento {zona.em} de São Paulo</h2>
+        <p>{zona.sobre}</p>
+        <p>
+          Seja qual for o caso, o atendimento é o mesmo: você chama no WhatsApp ou liga, e a equipe mais próxima sai na hora.
+          Também fazemos <a href={fossaZonaPath(zona)}>limpa fossa {zona.em}</a>.
+        </p>
+
+        <h2>Bairros atendidos {zona.em}</h2>
+        <div class="chips">
+          {lista.map((b) => <a href={bairroPath(b)}><Icon name="pin" size={16} /> {b.nome}</a>)}
+        </div>
+
+        <h2>Perguntas frequentes</h2>
+        <FaqList items={faq} />
+      </article>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h2>Atendimento {zona.em} agora</h2>
+          <p>Fale com a gente e receba atendimento em até {site.arrivalMinutes} minutos.</p>
+          <CtaButtons message={msg} size="md" />
+        </div>
+        <div class="side-list">
+          <h2>Outras regiões</h2>
+          <ul>
+            {zonas.filter((z) => z.slug !== zona.slug).map((z) => <li><a href={zonaPath(z)}>Desentupidora {z.em}</a></li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Serviços {zona.em}</span>
+        <h2>O que fazemos {zona.em}</h2>
+      </div>
+      <div class="services-grid">
+        {servicos.map((s) => <ServiceCard servico={s} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Desentupidora ${zona.em} agora`} message={msg} />
+</Base>

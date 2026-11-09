@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { site } from '../data/site';
+import { servicos } from '../data/servicos';
+import { bairros, bairroPath, getZona, zonaPath, fossaZonaPath, type Bairro } from '../data/locais';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../data/schema';
+
+export function getStaticPaths() {
+  return bairros.map((bairro) => ({ params: { slug: bairro.slug }, props: { bairro } }));
+}
+
+interface Props {
+  bairro: Bairro;
+}
+
+const { bairro } = Astro.props;
+const zona = getZona(bairro.zona);
+const path = bairroPath(bairro);
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Áreas atendidas', path: '/areas-atendidas/' },
+  { name: zona.nome, path: zonaPath(zona) },
+  { name: bairro.nome, path },
+];
+const faq = [
+  {
+    q: `Vocês atendem em ${bairro.nome} 24 horas?`,
+    a: `Sim. Atendemos ${bairro.nome} e os bairros vizinhos 24 horas por dia, inclusive fins de semana e feriados.`,
+  },
+  {
+    q: `Em quanto tempo a desentupidora chega em ${bairro.nome}?`,
+    a: `Chegamos em até ${site.arrivalMinutes} minutos em ${bairro.nome}.`,
+  },
+  {
+    q: `Atendem também ${bairro.vizinhos.slice(0, 2).join(' e ')}?`,
+    a: `Sim. Além de ${bairro.nome}, atendemos ${bairro.vizinhos.join(', ')} e os demais bairros ${zona.em.replace(/^n/, 'd')} de São Paulo.`,
+  },
+  {
+    q: `Fazem limpa fossa em ${bairro.nome}?`,
+    a: `Sim. Fazemos limpa fossa, limpeza de caixa de gordura e hidrojateamento em ${bairro.nome}.`,
+  },
+];
+const mesmaZona = bairros.filter((b) => b.zona === bairro.zona && b.slug !== bairro.slug);
+const msg = `Olá! Vim pelo site e preciso de uma desentupidora em ${bairro.nome}.`;
+const servico = {
+  nome: `Desentupidora em ${bairro.nome}`,
+  keyword: 'Desentupidora',
+  metaDescription: `Desentupidora 24 horas em ${bairro.nome}, São Paulo.`,
+};
+---
+
+<Base
+  title={`Desentupidora em ${bairro.nome} 24h | Chegamos em ${site.arrivalMinutes} min | Dutra SP`}
+  description={`Desentupidora em ${bairro.nome}, ${zona.nome} de São Paulo. Desentupimento de pia, ralo, vaso e esgoto, hidrojateamento e limpa fossa 24 horas. Chegamos em até ${site.arrivalMinutes} minutos.`}
+  schema={[serviceSchema(servico, `${bairro.nome}, São Paulo - SP`), faqSchema(faq), breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow">{zona.nome} · São Paulo</span>
+      <h1>Desentupidora em {bairro.nome} 24 horas</h1>
+      <p class="hero-lead">
+        Precisa de desentupidora em {bairro.nome}? A {site.name} atende 24 horas e chega em até {site.arrivalMinutes} minutos
+        para desentupir pia, ralo, vaso sanitário, cano e esgoto.
+      </p>
+      <CtaButtons message={msg} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-grid">
+      <article class="prose">
+        <h2>Desentupidora 24h em {bairro.nome}</h2>
+        <p>{bairro.sobre}</p>
+        <p>
+          Nossa equipe circula <a href={zonaPath(zona)}>{zona.em}</a> e chega rápido em {bairro.nome} e nos bairros vizinhos,
+          como {bairro.vizinhos.join(', ')}. Assim que você chama, a equipe mais próxima já sai para o seu endereço.
+        </p>
+
+        <h2>O que fazemos em {bairro.nome}</h2>
+        <ul>
+          <li><a href="/servicos/desentupimento-de-pia/">Desentupimento de pia</a>, tanque e lavatório</li>
+          <li><a href="/servicos/desentupimento-de-ralo/">Desentupimento de ralo</a> e de <a href="/servicos/desentupimento-de-vaso-sanitario/">vaso sanitário</a></li>
+          <li><a href="/servicos/desentupimento-de-esgoto/">Desentupimento de esgoto</a>, <a href="/servicos/desentupimento-de-cano/">canos</a> e prumadas</li>
+          <li><a href="/servicos/hidrojateamento/">Hidrojateamento</a> de tubulações e redes</li>
+          <li><a href="/servicos/limpa-fossa/">Limpa fossa</a> e <a href="/servicos/limpeza-de-caixa-de-gordura/">limpeza de caixa de gordura</a></li>
+          <li><a href="/servicos/desentupimento-de-conduite/">Desentupimento de conduíte</a> e de <a href="/servicos/desentupimento-de-agua-limpa/">tubulação de água limpa</a></li>
+        </ul>
+
+        <h2>Perguntas frequentes</h2>
+        <FaqList items={faq} />
+      </article>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h2>Desentupidora em {bairro.nome} agora</h2>
+          <p>Fale com a gente e receba atendimento em até {site.arrivalMinutes} minutos.</p>
+          <CtaButtons message={msg} size="md" />
+        </div>
+        <div class="side-list">
+          <h2>Outros bairros {zona.em}</h2>
+          <ul>
+            {mesmaZona.map((b) => <li><a href={bairroPath(b)}>Desentupidora em {b.nome}</a></li>)}
+            <li><a href={fossaZonaPath(zona)}>Limpa fossa {zona.em}</a></li>
+            <li><a href="/areas-atendidas/"><strong>Todas as áreas</strong></a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Serviços em {bairro.nome}</span>
+        <h2>Serviços de desentupidora em {bairro.nome}</h2>
+      </div>
+      <div class="services-grid">
+        {servicos.map((s) => <ServiceCard servico={s} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Desentupidora em ${bairro.nome} agora`} message={msg} />
+</Base>

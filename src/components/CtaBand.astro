@@ -1,0 +1,26 @@
+---
+import CtaButtons from './CtaButtons.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  message?: string;
+}
+
+const {
+  title = 'Entupiu? A gente resolve agora.',
+  text = `Plantão 24 horas em São Paulo. Nossa equipe chega em até ${site.arrivalMinutes} minutos.`,
+  message,
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container cta-band-inner">
+    <div>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <CtaButtons message={message} />
+  </div>
+</section>
