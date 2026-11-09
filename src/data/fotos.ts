@@ -17,7 +17,7 @@ const alts: Record<string, string> = {
   'desentupimento-de-pia': 'Ralo de pia de aço inox visto de cima',
   'desentupimento-de-ralo': 'Ralo quadrado de aço inox em piso de azulejo branco',
   'desentupimento-de-vaso-sanitario': 'Vaso sanitário branco em banheiro',
-  'desentupimento-de-cano': 'Tubos de PVC empilhados em um canteiro de obras',
+  'desentupimento-de-cano': 'Máquina desentupidora rotativa na calçada, ao lado de uma caixa de passagem aberta',
   'desentupimento-de-esgoto': 'Máquina desentupidora com cabo na tubulação de esgoto, em piso de bloquete',
   'desentupimento-de-conduite': 'Caixas de passagem com conduítes e fios em parede em obra',
   'desentupimento-de-agua-limpa': 'Torneira aberta com água corrente',
