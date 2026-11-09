@@ -11,9 +11,12 @@ São provisórias: troque pelas fotos reais da empresa assim que possível (bast
 | `desentupimento-de-ralo` | https://www.pexels.com/photo/5768318/ |
 | `desentupimento-de-vaso-sanitario` | https://www.pexels.com/photo/7545637/ |
 | `desentupimento-de-cano` | https://www.pexels.com/photo/29301874/ |
-| `desentupimento-de-esgoto` | https://www.pexels.com/photo/3977241/ |
 | `desentupimento-de-conduite` | https://www.pexels.com/photo/7937305/ |
 | `desentupimento-de-agua-limpa` | https://www.pexels.com/photo/861414/ |
 | `hidrojateamento` | https://www.pexels.com/photo/5652626/ |
-| `limpa-fossa` | https://www.pexels.com/photo/9739039/ |
-| `limpeza-de-caixa-de-gordura` | https://www.pexels.com/photo/8629127/ |
+
+## Fotos enviadas pelo responsável pelo site
+
+- `limpa-fossa`
+- `limpeza-de-caixa-de-gordura`
+- `desentupimento-de-esgoto`

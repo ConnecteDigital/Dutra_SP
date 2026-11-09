@@ -18,12 +18,12 @@ const alts: Record<string, string> = {
   'desentupimento-de-ralo': 'Ralo quadrado de aço inox em piso de azulejo branco',
   'desentupimento-de-vaso-sanitario': 'Vaso sanitário branco em banheiro',
   'desentupimento-de-cano': 'Tubos de PVC empilhados em um canteiro de obras',
-  'desentupimento-de-esgoto': 'Tampa de bueiro de ferro na rua',
+  'desentupimento-de-esgoto': 'Máquina desentupidora com cabo na tubulação de esgoto, em piso de bloquete',
   'desentupimento-de-conduite': 'Caixas de passagem com conduítes e fios em parede em obra',
   'desentupimento-de-agua-limpa': 'Torneira aberta com água corrente',
   'hidrojateamento': 'Profissional usando jato de água de alta pressão',
-  'limpa-fossa': 'Caminhão-tanque estacionado',
-  'limpeza-de-caixa-de-gordura': 'Pia de aço inox em cozinha de restaurante',
+  'limpa-fossa': 'Caminhão limpa fossa com carretel de mangueira durante atendimento',
+  'limpeza-de-caixa-de-gordura': 'Caixa de gordura aberta e cheia, antes da limpeza',
 };
 
 export interface Foto {
