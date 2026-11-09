@@ -7,7 +7,7 @@ import FaqList from '../../components/FaqList.astro';
 import Icon from '../../components/Icon.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import { Image } from 'astro:assets';
-import { fotoDoServico } from '../../data/fotos';
+import { fotoDoServico, fotosReais } from '../../data/fotos';
 import { site } from '../../data/site';
 import { servicos, type Servico } from '../../data/servicos';
 import { zonas, zonaPath, bairros, bairroPath } from '../../data/locais';
@@ -63,7 +63,7 @@ const msg = `Olá! Vim pelo site e preciso de ${servico.nome.toLowerCase()}.`;
           foto && (
             <figure class="service-figure">
               <Image src={foto.src} alt={foto.alt} widths={[480, 800, 1100]} sizes="(max-width: 960px) 100vw, 760px" />
-              <figcaption>{servico.nome}: serviço realizado pela {site.name}.</figcaption>
+              {fotosReais && <figcaption>{servico.nome}: serviço realizado pela {site.name}.</figcaption>}
             </figure>
           )
         }

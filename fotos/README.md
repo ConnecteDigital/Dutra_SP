@@ -1,4 +1,6 @@
-# Fotos reais dos serviços
+# Fotos dos serviços
+
+As fotos atuais são ilustrativas (ver `CREDITOS.md`). Para trocar por fotos reais:
 
 Suba as fotos em uma pasta com o nome do serviço (o mesmo "slug" da página):
 

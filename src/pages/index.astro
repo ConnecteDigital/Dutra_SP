@@ -42,6 +42,7 @@ const faq = [
 ];
 
 const fotoGeral = fotoDoServico('geral');
+const fotoSobre = fotoDoServico('hidrojateamento') ?? fotoGeral;
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.data.getTime() - a.data.data.getTime())
@@ -127,11 +128,11 @@ const posts = (await getCollection('blog'))
   </section>
 
   <section class="section">
-    <div class:list={['container', { 'about-grid': fotoGeral }]}>
+    <div class:list={['container', { 'about-grid': fotoSobre }]}>
       {
-        fotoGeral && (
+        fotoSobre && (
           <div class="about-photo">
-            <Image src={fotoGeral.src} alt={fotoGeral.alt} widths={[400, 600, 800]} sizes="(max-width: 900px) 100vw, 460px" />
+            <Image src={fotoSobre.src} alt={fotoSobre.alt} widths={[400, 600, 800]} sizes="(max-width: 900px) 100vw, 460px" />
           </div>
         )
       }
